@@ -29,6 +29,7 @@ const token = ref("")
 const errorMessage = ref("")
 const loading = ref(false)
 const handleLogin = () => {
+  router.push("/search");
   const regex = /^[A-Za-z]{16}$/;
   if (!regex.test(token.value)) {
     errorMessage.value = "Invalid token. Please enter 16 alphabetic characters.";
