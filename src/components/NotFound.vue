@@ -13,7 +13,7 @@
 import router from "../router/index.js";
 
 function goHome() {
-  router.push('/login')
+  router.push('/')
 }
 </script>
 

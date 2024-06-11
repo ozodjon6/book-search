@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router';
 import Login from '../components/Login.vue';
 import Search from '../components/Search.vue';
 import Details from '../components/Detail.vue';
@@ -6,7 +6,7 @@ import NotFound from "../components/NotFound.vue";
 
 const routes = [
     {
-        path: '/login',
+        path: '/',
         name: 'login',
         component: Login,
     },
@@ -29,7 +29,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes,
 });
 
