@@ -6,7 +6,7 @@ import NotFound from "../components/NotFound.vue";
 
 const routes = [
     {
-        path: '/',
+        path: '/login',
         name: 'login',
         component: Login,
     },
@@ -29,7 +29,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
 });
 
