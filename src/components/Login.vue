@@ -22,14 +22,13 @@
 
 <script setup>
 
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import router from "../router/index.js";
 
 const token = ref("")
 const errorMessage = ref("")
 const loading = ref(false)
 const handleLogin = () => {
-  router.push("/search");
   const regex = /^[A-Za-z]{16}$/;
   if (!regex.test(token.value)) {
     errorMessage.value = "Invalid token. Please enter 16 alphabetic characters.";
@@ -37,15 +36,24 @@ const handleLogin = () => {
   }
   loading.value = true;
   errorMessage.value = "";
+
   setTimeout(() => {
     loading.value = false;
-    if (token.value === "validTokenString") {
+    if (token.value) {
+      localStorage.setItem("authToken", token.value);
       router.push("/search");
     } else {
       errorMessage.value = "Invalid token. Please try again.";
     }
   }, 3000);
-}
+};
+
+onMounted(() => {
+  const storedToken = localStorage.getItem("authToken");
+  if (storedToken) {
+    router.push("/search");
+  }
+});
 </script>
 
 <style scoped>

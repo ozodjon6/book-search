@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="search">
-      <h1 class="title">Search Books</h1>
+      <div class="search__header">
+        <h1 class="title">Search Books</h1>
+        <button @click="handleLogout" class="logout-button">Log out</button>
+      </div>
       <div class="search__input-wrapper">
         <input class="search__input" v-model="query" @input="searchBooks" @keydown.backspace="clearIfEmpty" placeholder="Search for books" />
         <img v-if="query" @click="clearResults" class="search__clear" src="../assets/svg/close.svg" alt="">
@@ -87,9 +90,38 @@ watch(query, (newVal) => {
   }
 });
 
+const handleLogout = () => {
+  localStorage.removeItem("authToken")
+  router.push('/')
+}
+
 </script>
 
 <style scoped>
+
+.search__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logout-button {
+    padding: 8px 16px;
+    box-shadow: inset 0 0 0 1px #8595AD;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: transparent;
+    transition: all 0.3s;
+    border: none 0;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--bg-color);
+      color: #ffffff;
+      box-shadow: none;
+    }
+  }
+}
 /* Style the table */
 table {
   width: 100%;
